@@ -1,0 +1,85 @@
+/* glue: 0.13 hash: c974234a7a */
+        .sprite-sheeps-shBH05,
+.sprite-sheeps-shBH04,
+.sprite-sheeps-shBH06,
+.sprite-sheeps-shBH10,
+.sprite-sheeps-shBH09,
+.sprite-sheeps-shBH01,
+.sprite-sheeps-shBH07,
+.sprite-sheeps-shBH08,
+.sprite-sheeps-shBH03 {
+            background-image: url('sheeps.png');
+            background-repeat: no-repeat;
+        }
+        
+        .sprite-sheeps-shBH05 {
+            background-position: 0 0;
+            width: 434px;
+            height: 150px;
+        }
+        
+        .sprite-sheeps-shBH04 {
+            background-position: 0 -150px;
+            width: 297px;
+            height: 150px;
+        }
+        
+        .sprite-sheeps-shBH06 {
+            background-position: -434px 0;
+            width: 258px;
+            height: 150px;
+        }
+        
+        .sprite-sheeps-shBH10 {
+            background-position: -434px -150px;
+            width: 255px;
+            height: 150px;
+        }
+        
+        .sprite-sheeps-shBH09 {
+            background-position: 0 -300px;
+            width: 255px;
+            height: 150px;
+        }
+        
+        .sprite-sheeps-shBH01 {
+            background-position: -255px -300px;
+            width: 242px;
+            height: 150px;
+        }
+        
+        .sprite-sheeps-shBH07 {
+            background-position: 0 -450px;
+            width: 232px;
+            height: 150px;
+        }
+        
+        .sprite-sheeps-shBH08 {
+            background-position: -232px -450px;
+            width: 227px;
+            height: 150px;
+        }
+        
+        .sprite-sheeps-shBH03 {
+            background-position: -459px -450px;
+            width: 223px;
+            height: 150px;
+        }
+        
+        @media screen and (-webkit-min-device-pixel-ratio: 1.0), screen and (min--moz-device-pixel-ratio: 1.0), screen and (-o-min-device-pixel-ratio: 100/100), screen and (min-device-pixel-ratio: 1.0), screen and (min-resolution: 1.0dppx) {
+            .sprite-sheeps-shBH05,
+    .sprite-sheeps-shBH04,
+    .sprite-sheeps-shBH06,
+    .sprite-sheeps-shBH10,
+    .sprite-sheeps-shBH09,
+    .sprite-sheeps-shBH01,
+    .sprite-sheeps-shBH07,
+    .sprite-sheeps-shBH08,
+    .sprite-sheeps-shBH03 {
+                background-image: url('sheeps.png');
+                -webkit-background-size: 692px 600px;
+                -moz-background-size: 692px 600px;
+                background-size: 692px 600px;
+            }
+        }
+        
