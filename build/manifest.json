@@ -1,7 +1,7 @@
 {
   "description": " ",
   "version": "0.0.0.1",
-  "name": "Firebase Chrome Extenison",
+  "name": "Borregos Libres Extension",
   "background": {
     "scripts": ["background.js"]
   },
@@ -11,7 +11,7 @@
       "24": "icons/icon-24.png",
       "32": "icons/icon-32.png"
     },
-    "default_title": "Firebase Chrome extension",
+    "default_title": "Borregos libres extension",
     "default_popup": "/popup.html"
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval' ; object-src 'self'",

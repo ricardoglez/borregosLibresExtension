@@ -4,18 +4,11 @@ import Cookies from 'js-cookie';
 import AnimateComponent from './AnimateComponent';
 import TWEEN, { Tween } from '@tweenjs/tween.js';
 
-import sheep0 from '../images/sheeps/shBH01.png';
-import sheep1 from '../images/sheeps/shBH02.png';
-import sheep2 from '../images/sheeps/shBH03.png';
-import sheep3 from '../images/sheeps/shBH04.png';
-import sheep4 from '../images/sheeps/shBH05.png';
-import sheep5 from '../images/sheeps/shBH06.png';
-import sheep6 from '../images/sheeps/shBH07.png';
-import sheep7 from '../images/sheeps/shBH08.png';
-import sheep8 from '../images/sheeps/shBH09.png';
-import sheep9 from '../images/sheeps/shBH10.png';
 
+import sheepsSpriteRef from '../images/sheeps/sheepsSprites.json';
+import spritesheetFull from '../images/sheeps/sheepsSprites.png';
 
+console.log( sheepsSpriteRef);
 
 class MyStage{
   constructor( selector , isExtension, centerPoint ){
@@ -41,6 +34,7 @@ class MyStage{
     this.bounds = null;
     this.renderer = null;
     this.stage = null;
+    this.sheet = null;
     this.loader = new PIXI.Loader();
 
     // this.addDots();
@@ -94,7 +88,8 @@ class MyStage{
       this.sheeps = sheeps;
       this.loadAvSheeps( this.sheeps )
       .then( response =>{
-        console.log( 'loadAvSheeps', response );
+        console.log( 'loadAvSheeps', response ,this.sheet);
+       
       } );
     }
 
@@ -201,35 +196,63 @@ class MyStage{
       return new Promise( (resolve, reject)=> {
       
         // console.log( sheeps );
-        if( !sheeps ){
-          reject( { error: 'Sheeps Dont exist'} ); 
-        }
+      //   if( !sheeps ){
+      //     reject( { error: 'Sheeps Dont exist'} ); 
+      //   }
 
       let files = [];
       sheeps.forEach( sh => {
-        // console.log( 'sheep' );
-        // console.log( sh );
-        this.loadSheep( sh )
-        .then( responseSh => {
-          console.log( responseSh );
-          sh['fileName'] = responseSh.data;
-          files = [...files, sh ];
-        } );
+        console.log( 'sheep' );
+        console.log( sh );
+        // console.log( currentSheep );
+        let fileNameBase = `  shBH${sh.borregoId<=9 ?'0':''}${sh.borregoId}`
+        sh['fileName'] = fileNameBase;
+        files = [...files, sh ];
       } );
 
-      this.loader.load( (loader, resources) => {
-      //     // This creates a texture from a 'sheep.png' image
-         console.log(  'Loading' );
-         console.log(  resources );
-         this.setupPixi( resources,  files );
-          
-      });
-      resolve( { success: true } );
+      console.log( files);
+
+      console.log( this.loader );
+      this.loader.add( 'images/sheeps/sheepsSprites.json').load(this.setup);
+
+
+      resolve( { success: true, data: { sheeps: sheeps } } );
       } );
     }
 
+    this.setup = () => {
+      
+      console.log( 'setup' );
+      this.sheet = this.loader.resources[ 'images/sheeps/sheepsSprites.json' ].spritesheet;
+      // console.log(this.sheet);
+      this.sprite = new PIXI.Sprite(this.sheet.textures[ 'sheepsSprites.png' ]);
+      // console.log(this.sprite);
+
+
+    // forEach Sheep Loaded condigure it and handle the animation 
+
+      let anySheep = new PIXI.AnimatedSprite(this.sheet.animations["shBH01"]);
+
+      console.log(anySheep);
+      // set speed, start playback and add it to the stage
+      anySheep.animationSpeed = 0.11; 
+      anySheep.position.set( 800 , 400 );
+
+      anySheep.play();
+      
+    
+      // var blackHole = this.sheet.textures['shBH07_04.png']; 
+
+      // var circle = new PIXI.Circle(this.centerPoint.x, this.centerPoint.y, 20);
+      // this.stage.addChild(blackHole);
+      
+      
+      
+      this.stage.addChild(anySheep);
+      requestAnimationFrame((time) => this.gameLoop( time ));
+    }
     this.selectSheep = ( id ) => {
-210      // console.log(id);
+      // console.log(id);
       switch(id){
         case 0:
          return sheep0
@@ -273,77 +296,29 @@ class MyStage{
     this.loadSheep = ( sheepObject ) => {
       console.log('Load new Sheep');
 
-      console.log(sheepObject);
-      let promise = new Promise( (res, rej )=> {
-        let status = { success: false };
-        let currentSheep = this.selectSheep( sheepObject.borregoId );
-        console.log( currentSheep );
-        try{
-          this.loader.add( currentSheep )
-          status.success = true;
-          status.data = currentSheep;
-          return res( status )
-        }
-        catch( error ){
-          status['error'] = error;
-          return rej( status )
-        }        
-      } );
+      // console.log(sheepObject);
+      // let promise = new Promise( (res, rej )=> {
+      //   let status = { success: false };
+      //   let currentSheep = this.selectSheep( sheepObject.borregoId );
+      //   console.log( currentSheep );
+      //   try{
+      //     this.loader.add( currentSheep )
+      //     status.success = true;
+      //     status.data = currentSheep;
+      //     return res( status )
+      //   }
+      //   catch( error ){
+      //     status['error'] = error;
+      //     return rej( status )
+      //   }        
+      // } );
 
-      return promise
+      // return promise
     }
     // load the texture we need
 
   }
-
   
-  
-
-  
-//   startDots() {210
-//     console.log('Start Dots');
-//     const now = performance.now();
-//     for (let i = 0; i < this.totalDots; i++) {
-//       this.dots.children[i].animateComponent.start(now);
-//     }
-//   }
-
-//   addDots() {
-//     console.log('Add Dots');
-//     this.dotSize = 10;
-//     this.totalDots = 10;
-//     this.duration = 1400;
-//     this.minX = 0;
-//     this.maxX = 200;
-//     this.spacer = (this.dotSize * 2) + 3;
-//     this.delay = this.duration / this.totalDots;
-//     this.dots = new PIXI.Container();
-//     this.stage.addChild(this.dots);
-//     for (let i = 0; i < this.totalDots; i++) {
-//       let dot = new Dot(this.dotSize);
-//       dot.x = 0;
-//       dot.y = i * this.spacer;
-//       dot.animateComponent = new AnimateComponent(dot, this.delay * i, this.duration, this.minX, this.maxX);
-//       this.dots.addChild(dot);
-//     }
-//   }
-// }
-// /**
-//  * 
-//  */
-
-// class Dot {
-//   constructor(size) {
-//     const dot = new PIXI.Graphics();
-//     dot.lineStyle(0);
-//     dot.beginFill(0xFF0099, 0.6);
-//     dot.drawCircle(0, 0, size);
-//     dot.endFill();
-//     return dot;
-//   }
-// }
-
-
 }
 
 export default MyStage; 
