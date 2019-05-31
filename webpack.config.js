@@ -4,6 +4,7 @@ var    MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var    CopyWebpackPlugin = require("copy-webpack-plugin");
 var    HtmlWebpackPlugin = require("html-webpack-plugin");
 
+
 var beautify = require('js-beautify').js_beautify;
 
 var options = {
