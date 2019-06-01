@@ -1,5 +1,5 @@
 <div>
-  <h2> Boregos Libres <h2>
+  <h2> Boregos Libres </h2>
   <div style='font-size:.8em;'>
   <p> Esta extensión de Chrome tiene una dinámica sencilla:<p>
       Sólo funciona en horarios no hábiles de trabajo de oficina.  
