@@ -13,4 +13,5 @@
     </p>
     <img src='./src/images/screenshot.png' style="max-height:'150px' width:auto;">
   </div>
+  <strong>errege @ 2019 </strong>
 </div>
