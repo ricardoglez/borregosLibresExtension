@@ -9,6 +9,7 @@ export const isExtension = chrome && chrome.hasOwnProperty('extension');
 
 let sheeps = null;
 let centerP = null;
+let port = null;
 
 let callbackMessage = (response) => {
   console.log(response);
@@ -17,39 +18,30 @@ let callbackMessage = (response) => {
     sheeps = response.sheepsResponse.data;
 
     if (!response.fingerprintResponse.data.fpExist) {
-      utils.addThisSheep(response.fingerprintResponse.data.sheepModel)
-        .then(responseAddSheep => {
-          console.log('add sheep REsponse', responseAddSheep.sheep);
-          let myStage = new MyStage(
-            '#myContent',
-            isExtension,
-            response.centerPoint.data,
-             responseAddSheep.sheep,
-          );
-          myStage.initializeApp()
-            .then(responseApp => {
-              console.log(responseApp, responseAddSheep.sheep);
-              myStage.setCenterPoint(response.centerPoint.data);
-              myStage.setSheeps([...response.sheepsResponse.data, responseAddSheep.sheep]);
-            });
-
-        });
-
-    } else {
-
+      console.log('fp doesnt exist', response.fingerprintResponse, port);
+      port.postMessage({ 
+        contentScriptQuery: "addThisSheep", 
+        data: {
+          mySheep : response.fingerprintResponse.data.sheepModel,
+          fingerprint: response.fingerprintResponse,
+          centerPoint: centerP,
+          sheeps: sheeps,
+        }
+       });
+    }
+    else {
       let myStage = new MyStage(
         '#myContent',
          isExtension,
          response.centerPoint.data,
-         response.fingerprintResponse.data.mySheep 
+         response.fingerprintResponse.data.mySheep
       );
-
       myStage.initializeApp()
-        .then(initialResponse => {
-          console.log(initialResponse);
+        .then( initialResponse => {
+          console.log( initialResponse );
           myStage.setCenterPoint(response.centerPoint.data);
           myStage.setSheeps(response.sheepsResponse.data);
-        })
+        } )
         .catch(err => {
           console.error(err);
         })
@@ -60,16 +52,39 @@ let callbackMessage = (response) => {
   }
 };
 
+const callbackMySheepReady = ( response )=> {
+  
+  console.log(response) ;
+  let myStage = new MyStage(
+    '#myContent',
+    isExtension,
+    response.centerPoint.data,
+    response.mySheep,
+  );
+  myStage.initializeApp()
+    .then(responseInitApp => {
+      console.log( responseInitApp );
+      console.log(response, response.mySheep);
+      myStage.setCenterPoint(response.centerPoint );
+      myStage.setSheeps([...response.sheeps, response.mySheep ]);
+    });
+
+}
+
 if (isExtension) {
-  let port = chrome.runtime.connect( {name: 'borregosLibres'});  
+  port = chrome.runtime.connect( {name: 'borregosLibres'});  
   
   port.postMessage({ contentScriptQuery: "fetchInitialData" });
 
   port.onMessage.addListener( msg => {
     console.log(msg);
-    if(msg.dataReady){
-      console.log( msg.dataReady);
+    if( msg.type == "dataReady" && msg.success ){
+      // console.log( msg );
       callbackMessage( msg.data );
+    }
+    if( msg.type == "mySheepReady" && msg.success ){
+      console.log( msg.success);
+      callbackMySheepReady( msg.data );
     }
   } )
    
@@ -109,7 +124,7 @@ else {
           '#myContent',
           isExtension,
           responseCenterPoint.data,
-           responseInitFp.data.mySheep 
+           responseInitFp.data.mySheep
         );
 
         myStage.initializeApp()

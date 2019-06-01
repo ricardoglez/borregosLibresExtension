@@ -29,9 +29,11 @@ if( isExtension ){
             if( !responseInitFp.data.fpExist){
               utils.addThisSheep( responseInitFp.data.sheepModel )
               .then( responseAddSheep => {
+
                 console.log( 'add sheep REsponse' , responseAddSheep );
                 port.postMessage({ 
-                  dataReady: true, 
+                  type: "dataReady",
+                  success: true, 
                   data :{  
                   fingerprintResponse: responseInitFp, 
                   sheepsResponse: responseSheeps, 
@@ -45,7 +47,8 @@ if( isExtension ){
             }
             else {
               port.postMessage({ 
-                dataReady: true, 
+                type: 'dataReady',
+                success: true, 
                 data: {  
                   fingerprintResponse: responseInitFp, 
                   sheepsResponse: responseSheeps, 
@@ -54,18 +57,27 @@ if( isExtension ){
                   mySheepResponse: null,
                   success: true,
                 }
-            }); 
-
+            })
             }
           })
-          // .catch( error => {
-          //   console.error( error );
-          // } );
-          
         }
 
         if( message.contentScriptQuery == 'addThisSheep'){
-          
+          console.log( message );
+          utils.addThisSheep( message.data.mySheep )
+          .then(responseAddSheep => {
+            console.log('add sheep REsponse', message.data);
+              port.postMessage(  { 
+                type : 'mySheepReady',
+                success :true,
+                data :{
+                  mySheep : message.data.mySheep,
+                  fingerprint: message.data.fingerprint,
+                  centerPoint: message.data.centerPoint,
+                  sheeps: message.data.sheeps,
+                }
+            });
+          });
         }
       });
   } );

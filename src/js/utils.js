@@ -196,7 +196,7 @@ const utils = {
     const setSheepPosition= ( nowDate ) => {
 
       let position = { xI:null  , yI:null };
-
+      
       position.yI = utils.randomNumber( -200 , document.body.clientWidth +200)
       position.xI = utils.randomNumber( -200 , document.body.clientWidth +250  );
 

@@ -22,7 +22,7 @@ if( chrome.hasOwnProperty('extension') ){
 
 class MyStage{
   constructor( selector , isExtension, centerPoint, mySheep  ){
-  console.log(mySheep)
+  console.log( mySheep );
   if( isExtension ){
     // console.log('extension');
     let injectContainer = document.createElement('section');
@@ -358,7 +358,7 @@ class MyStage{
           let currentSheep = this.sheeps.find( sheep => sheep.sheepId == el.sheepId ); 
           if( !currentSheep ){ return }
             var tweenPath = new TWEEN.Tween(coords)
-            .to({ x: this.centerPoint.x, y: this.centerPoint.y, }, currentSheep.borrego.speed* currentSheep.borrego.exponential *10  )
+            .to({ x: this.centerPoint.x, y: this.centerPoint.y, }, currentSheep.borrego.speed* currentSheep.borrego.exponential *currentSheep.borrego.numCurl  )
             .easing( TWEEN.Easing.Quadratic.Out ) 
             .repeat( Infinity )
             .onUpdate(function( res ) { 
