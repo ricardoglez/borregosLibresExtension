@@ -58,7 +58,8 @@ class MyStage{
     this.checkingFreeTime =() => {
         let now = moment();
         let currentDay =  now.format('dddd');
-        let currentHour =  now.format('h');
+        let currentHour =  now.hours();
+        console.log(now);
         console.log(currentDay);
         console.log(currentHour);
         if( currentDay == 'Sunday' || currentDay == 'Saturday' ){
@@ -80,7 +81,7 @@ class MyStage{
       console.log( '::Initialize App::' );
       console.log( '::isFreeTime::', isFreeTime );
         promise = new Promise( (res, rej ) => {
-          if( isFreeTime){
+          if( isFreeTime ){
             let status = { success: false };
             try{
               this.container = document.querySelector(selector);
@@ -113,7 +114,6 @@ class MyStage{
             }
           }
           else {
-            document.getElementById( )
             rej( { success: false } )
           } 
         } );
