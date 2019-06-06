@@ -4,6 +4,10 @@ var    MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var    CopyWebpackPlugin = require("copy-webpack-plugin");
 var    HtmlWebpackPlugin = require("html-webpack-plugin");
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
 var beautify = require('js-beautify').js_beautify;
 
 var options = {
@@ -109,7 +113,12 @@ var options = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/popup/popup.html',
+<<<<<<< HEAD
       filename: "./popup.html"
+=======
+      filename: "./popup.html",
+      inject: false
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',

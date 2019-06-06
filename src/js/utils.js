@@ -69,15 +69,24 @@ const utils = {
     }
   },
   initializeFingerprint: () => {
+<<<<<<< HEAD
     // console.log('Initialize Fingerprint ');
+=======
+    console.log('Initialize Fingerprint ');
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
     return new Promise( (resolve, reject) => {
       let fingerprintExist = !localStorage.getItem('fingerprint') ? false: true ;
       let fingerPrint = null;
 
       let status = { success : false, data:null }
 
+<<<<<<< HEAD
       // console.log('fingerprintExist');
       // console.log(fingerprintExist);
+=======
+      console.log('fingerprintExist');
+      console.log(fingerprintExist);
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
       if( fingerprintExist ){
         // console.log('User already has a sheep!');
         // let obj = { fingerprint: localStorage.getItem('fingerprint'),  }
@@ -113,17 +122,29 @@ const utils = {
 
         utils.createOwnSheep( components , fingerPrint )
         .then( responseModel => {
+<<<<<<< HEAD
+=======
+          console.log( responseModel );
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
           let cookieFingerprint = Cookies.get( 'fingerprint' );
           // console.log( 'CoookieFP', cookieFingerprint, fingerPrint );
           if ( cookieFingerprint == undefined ) {
             Cookies.set( 'fingerprint', fingerPrint );
             localStorage.setItem( 'fingerprint', fingerPrint );
             localStorage.setItem('created', now);
+<<<<<<< HEAD
             utils.setMySheep( responseModel.data.borrego );
           } else {
             localStorage.setItem( 'fingerprint', fingerPrint );
             localStorage.setItem('created', now);
             utils.setMySheep( responseModel.data.borrego );
+=======
+            utils.setMySheep( responseModel.data );
+          } else {
+            localStorage.setItem( 'fingerprint', fingerPrint );
+            localStorage.setItem('created', now);
+            utils.setMySheep( responseModel.data );
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
           }
           status.success = true;
           status.data = {fingerprint: fingerPrint, "fpExist": false, "created": now, "sheepModel": responseModel.data, "fPComopnents": components} ;
@@ -157,6 +178,12 @@ const utils = {
       borregoId: null, 
       connected       : false,
       created         : null,
+<<<<<<< HEAD
+=======
+      isCollide       : null,
+      filename        : null,
+      sheeepId        : null,
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
       fingerprint     : fingerprint,
     };
 
@@ -192,9 +219,15 @@ const utils = {
     const setSheepPosition= ( nowDate ) => {
 
       let position = { xI:null  , yI:null };
+<<<<<<< HEAD
 
       position.yI = utils.mapRange( nowDate.getHours() , 9 , 18 , 1 ,10 );
       position.xI = utils.randomNumber( -100 , -250  );
+=======
+      
+      position.yI = utils.randomNumber( -200 , document.body.clientWidth +200)
+      position.xI = utils.randomNumber( -200 , document.body.clientWidth +250  );
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
 
       return position 
     };
@@ -302,14 +335,21 @@ const utils = {
     return new Promise ( ( resolve, reject ) => {
       const sheepToServer = { 
         borrego: sheep,
+<<<<<<< HEAD
 
+=======
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
       } 
       firestore.collection('borregos').add( sheep )
       .then( response => {
         console.log( 'Successfully Added' );
         console.log( response );
         sheep["id"] = response.id;
+<<<<<<< HEAD
         resolve( { success: true , sheepId: response.id} );
+=======
+        resolve( { success: true , sheep: sheep} );
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
       } )
       .catch( err => {
         console.error(err);

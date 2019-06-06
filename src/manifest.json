@@ -24,7 +24,12 @@
 	 }],
 	 "web_accessible_resources": [
 		"*.png",
+<<<<<<< HEAD
 		"styles.css"
+=======
+		"styles.css",
+		"*.json"
+>>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
 	 ],
 	 "manifest_version": 2
   }
