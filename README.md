@@ -32,11 +32,11 @@
       <code> git@github.com:ricardoglez/borregosLibresExtension.git </code>
       </li>
       <li>
-      Cuando el repositorio esta en la maquina del usuario. instalar las dependencias del proyecto con :
+      Cuando el repositorio esta en la maquina del usuario, instalar las dependencias del proyecto con :
       <code> npm install </code>
       </li>
       <li>
-        Ya que estan listas las dependencias, compilar el proyecto con:
+        Al finalizar la instación de las dependencias, compilar el proyecto con:
         <code> npm run production </code>
       </li>
       <li>
