@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-Boilerplate to test firebase in a chrome extension
-=======
 <div>
   <h2> Boregos Libres </h2>
   <div style='font-size:.8em;'>
@@ -18,4 +15,3 @@ Boilerplate to test firebase in a chrome extension
   </div>
   <strong>errege @ 2019 </strong>
 </div>
->>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e

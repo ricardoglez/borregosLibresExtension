@@ -1,14 +1,10 @@
 /node_modules
 node_modules
-<<<<<<< HEAD
 .env
 .babelrc
 .git
-=======
 build
 /build
 .vscode
 .env
 .babelrc
-.git
->>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e

@@ -29,17 +29,11 @@ if( isExtension ){
             if( !responseInitFp.data.fpExist){
               utils.addThisSheep( responseInitFp.data.sheepModel )
               .then( responseAddSheep => {
-<<<<<<< HEAD
-                console.log( 'add sheep REsponse' , responseAddSheep );
-                port.postMessage({ 
-                  dataReady: true, 
-=======
 
                 console.log( 'add sheep REsponse' , responseAddSheep );
                 port.postMessage({ 
                   type: "dataReady",
                   success: true, 
->>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
                   data :{  
                   fingerprintResponse: responseInitFp, 
                   sheepsResponse: responseSheeps, 
@@ -53,12 +47,8 @@ if( isExtension ){
             }
             else {
               port.postMessage({ 
-<<<<<<< HEAD
-                dataReady: true, 
-=======
                 type: 'dataReady',
                 success: true, 
->>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
                 data: {  
                   fingerprintResponse: responseInitFp, 
                   sheepsResponse: responseSheeps, 
@@ -67,16 +57,6 @@ if( isExtension ){
                   mySheepResponse: null,
                   success: true,
                 }
-<<<<<<< HEAD
-            }); 
-
-            }
-          })
-          // .catch( error => {
-          //   console.error( error );
-          // } );
-          
-=======
             })
             }
           })
@@ -98,7 +78,6 @@ if( isExtension ){
                 }
             });
           });
->>>>>>> b7e283482f298c5b30c7ab1b6ecba7e944921b8e
         }
       });
   } );
