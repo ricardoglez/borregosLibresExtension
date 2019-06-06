@@ -2,7 +2,7 @@
   <h2> BlockGobExtension #2 </h2>
   <h3> Boregos Libres </h3>
   <section>
-    <h4>Descripción:<h4>
+    <h4>Descripción:</h4>
     <div style='font-size:.8em;'>
     <p> Esta extensión de Chrome tiene una dinámica sencilla:<p>
         Sólo funciona en horarios no hábiles de trabajo de oficina.  
@@ -25,6 +25,7 @@
   </section>
   <section>
     <h4>Instrucciones para instalar la extensión.</h4>
+    <div style='font-size:.8em;'>
     <ol>
       <li>
       Clonar o Forkear el repositorio en la máquina del usuario. 
@@ -49,6 +50,7 @@
         Dar clic en cargar paquete y seleccionar la carpeta <strong> build </strong>
       </li>
     </ol>
+    </div>
   </section>
   <strong>errege @ 2019 </strong>
 </div>
